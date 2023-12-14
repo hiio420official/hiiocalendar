@@ -7,6 +7,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/dist"), // 번들 결과물 위치
         filename: "index.js",
+        libraryTarget: 'umd',
     },
     module: {
         rules: [

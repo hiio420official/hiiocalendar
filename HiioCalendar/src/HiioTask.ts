@@ -24,7 +24,6 @@ export class HiioTask {
     }
 
     get end(): HiioCalendar {
-
         return this._end;
     }
 
@@ -36,29 +35,17 @@ export class HiioTask {
     }
 
 
-    compare(src: HiioCalendar, dist: HiioCalendar): COMPARE {
-        let _src: number = src.date.getTime();
-        let _dist: number = dist.date.getTime();
-        if (_src > _dist) {
-            return COMPARE.PREV;
-        } else if (_src === _dist) {
-            return COMPARE.CURRENT;
-        } else {
-            return COMPARE.NEXT;
-        }
-    }
-
     dateList(): HiioCalendar[] {
-
         if (!this._start || !this._end) {
             return [];
         }
-        let diffTime: number = this.end.date.getTime() - this.start.date.getTime();
+        let diffTime: number = this._end.date.getTime() - this._start.date.getTime();
         let diffDays: number = diffTime / (1000 * 60 * 60 * 24);
         if (diffDays === 0) {
             return [this._start];
         }
-        return [this.start, ...Array(diffDays - 1).fill(0).map((_, i: number) => new HiioCalendar(this.start.Y, this.start.M, this.start.D + i + 1)), this.end];
+
+        return [this._start, ...Array(diffDays - 1).fill(0).map((_, i: number) => new HiioCalendar(this._start.Y, this._start.M, this._start.D + i + 1)), this._end];
     }
 
     get dateToWeeks(): HiioCalendar[][] {

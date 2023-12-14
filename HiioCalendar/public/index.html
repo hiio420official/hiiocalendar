@@ -15,33 +15,65 @@
     #calendar>.row{
         display: flex;
         width:100%;
+        flex: 1 1 0%;
         position:relative;
     }
-    #calendar>.row>div{
-        height:100px;
-        background: #d3d3d3;
-        color:black;
-        flex-grow: 1;
+    #calendar > .row>.weeks{
+        position:absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        display: flex;
     }
-    #calendar>.row>div:hover{
-        background: #89ef88;
+    #calendar > .row>.task_list{
+        flex: 1 1 0;
+        background: rgba(50,250,152,0.9);
+        margin-top: 30px;
+        position:relative;
+    }
+    #calendar>.row>.weeks>div{
+        color:black;
+        flex: 1 1 0;
+        z-index: 1;
     }
 
-    #calendar>.row>div>.start{
-        border-radius: 8px 0 0 8px;
-    }
-    #calendar>.row>div>.end{
-        border-radius: 0 8px 8px 0;
-    }
-    #calendar>.row>div>.task{
-        background: red;
+    #calendar>.row>.task_list>.task{
         width:100%;
-        height:16px;
+        height:24px;
         position:absolute;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding-right:8px;
+        z-index: 2;
+    }
+    #calendar>.row>.task_list>.task >.item,#calendar>.row>.task_list>.task >.add_item{
+        width:100%;
+        background: cadetblue;
+        height:22px;
+        color:white;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        box-sizing: border-box;
+        padding: 0 8px;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 8px;
+        z-index: 3;
+    }
+
+    #calendar>.row>.task_list>.task >.add_item{
+        background: #37e0e7;
+        z-index: 1001;
+    }
+    #calendar>.row>.task_list>.task >.item:hover{
+        background: red;
     }
     html,body{
         user-select: none;
         width:100%;
+        height:100%;
         margin:0;
         padding:0;
     }
